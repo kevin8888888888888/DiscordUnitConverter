@@ -103,7 +103,7 @@ class NormalUnit( Unit ):
                     continue
                 repl = {}
                 repl[ "start" ] = numberResult.start()
-                repl[ "text"  ] = metricValue
+                repl[ "text"  ] = " " + metricValue
                 repl[ "end" ] = find.end()
                 replacements.append(repl)
         if len(replacements)>0:
