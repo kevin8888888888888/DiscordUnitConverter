@@ -205,7 +205,8 @@ units.append( NormalUnit( "rack unit", "rack ?units?|ru", DISTANCE, 0.04445 ) ) 
 units.append( NormalUnit( "smoot", "smoots?", DISTANCE, 1.7018 ) )                            #Smoot units
 
 #Distance SI to Freedom
-units.append( NormalUnit( "centimeter", "cemtimeters?|cm", DISTANCEFREEDOM, 0.0328084 ) )     #centimeters
+units.append( NormalUnit( "millimeter", "millimeters?|mm", DISTANCEFREEDOM, 0.00328084 ) )     #centimeters
+units.append( NormalUnit( "centimeter", "centimeters?|cm", DISTANCEFREEDOM, 0.0328084 ) )     #centimeters
 units.append( NormalUnit( "meter", "meters?", DISTANCEFREEDOM, 3.28084 ) )                    #meters
 
 
