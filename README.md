@@ -9,9 +9,9 @@ This bot is a fork of DiscordUnitCorrector: https://github.com/Wendelstein7/Disc
 
 ## How to self-host
 * Install the main dependency Discord.py using `python3 -m pip install -U discord.py` (make sure you got the rewrite branch!)
-* `https://github.com/kevin8888888888888/DiscordUnitConverter`.
+* `git clone https://github.com/kevin8888888888888/DiscordUnitConverter`.
 * Navigate to the created folder `DiscordUnitConverter`.
-* Create a (text) file named `token`.
+* Create a file named `token`.
 * Open it with a text editor and enter your Discord bot token there, and save it.
 * Run the bot with `python3 unitbot.py`.
 
