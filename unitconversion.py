@@ -62,6 +62,7 @@ POWER = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ).addMultipl
 #Scales for freedom units
 DISTANCEFREEDOM = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
 AREAFREEDOM = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
+MASSFREEDOM = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
 
 class Unit:
     def __init__( self, friendlyName, unitType, toSIMultiplication, toSIAddition ):
@@ -194,6 +195,10 @@ units.append( NormalUnit( "pennyweight", "penny ?weights?", MASS, 1.55517384 ) )
 units.append( NormalUnit( "troy pound", "troy ?pounds?", MASS, 373.2417216 ) )           #troy pound
 units.append( NormalUnit( "dram", "drams?", MASS, 1.7718451953125 ) )                    #drams
 units.append( NormalUnit( "hundredweight", "hundredweights?|cwt", MASS, 50802 ) )        #hundredweights
+#Mass SI to Freedom
+units.append( NormalUnit( "gram", "grams?|g", MASSFREEDOM, 0.00220462 ) )                      #grams
+units.append( NormalUnit( "kilogram", "kilograms?|kg|kilo|kilos", MASSFREEDOM, 2.20462 ) )     #kilograms
+units.append( NormalUnit( "metric ton", "metric tons?", MASSFREEDOM, 2204.62 ) )               #metric tons
 
 #Distance Freedom to SI
 units.append( NormalUnit( "inch", "inch(es)?", DISTANCE, 0.0254 ) )                           #inch
