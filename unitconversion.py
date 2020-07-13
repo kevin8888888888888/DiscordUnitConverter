@@ -205,7 +205,7 @@ units.append( NormalUnit( "rack unit", "rack ?units?|ru", DISTANCE, 0.04445 ) ) 
 units.append( NormalUnit( "smoot", "smoots?", DISTANCE, 1.7018 ) )                            #Smoot units
 
 #Distance SI to Freedom
-units.append( NormalUnit( "meter", DISTANCEFREEDOM, 3.28084 ) )
+units.append( NormalUnit( "meter", "meter(s)?" DISTANCEFREEDOM, 3.28084 ) )
 
 #Luminous intensity  Imperial to SI
 #units.append( NormalUnit( "Lumen", "lumens?|lm", LUMINOUSINTENSITY, 1 ) )          #lumens
