@@ -60,7 +60,7 @@ LUMINOUSINTENSITY = UnitType().addMultiple( "cd", 1 )
 POWER = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ).addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
 
 #Scales for freedom units
-DISTANCEFREEDOM = UnitType().addMultiple( "feet", 1 ).addMultiple( "miles", 5280 )
+DISTANCEFREEDOM = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
 
 class Unit:
     def __init__( self, friendlyName, unitType, toSIMultiplication, toSIAddition ):
@@ -205,9 +205,9 @@ units.append( NormalUnit( "rack unit", "rack ?units?|ru", DISTANCE, 0.04445 ) ) 
 units.append( NormalUnit( "smoot", "smoots?", DISTANCE, 1.7018 ) )                            #Smoot units
 
 #Distance SI to Freedom
-units.append( NormalUnit( "millimeter", "millimeters?|mm", DISTANCEFREEDOM, 0.00328084 ) )     #centimeters
-units.append( NormalUnit( "centimeter", "centimeters?|cm", DISTANCEFREEDOM, 0.0328084 ) )     #centimeters
-units.append( NormalUnit( "meter", "meters?", DISTANCEFREEDOM, 3.28084 ) )                    #meters
+units.append( NormalUnit( "millimeter", "millimeters?|mm", DISTANCEFREEDOM, 0.0393701 ) )      #centimeters
+units.append( NormalUnit( "centimeter", "centimeters?|cm", DISTANCEFREEDOM, 0.393701 ) )       #centimeters
+units.append( NormalUnit( "meter", "meters?", DISTANCEFREEDOM, 39.3701 ) )                     #meters
 
 
 
