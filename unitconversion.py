@@ -45,6 +45,7 @@ class UnitType:
                 return self.getStringFromMultiple(value, multiple)
         return self.getStringFromMultiple( value, sortedMultiples[-1] )
 
+#Scales for SI Units
 DISTANCE = UnitType().addMultiple("m", 1).addMultiple( "km", 10**3 ).addMultiple( "cm", 10**-2).addMultiple( "mm", 10**-3).addMultiple( "µm", 10**-6).addMultiple( "nm", 10**-9).addMultiple( "pm", 10**-12 )
 AREA = UnitType().addMultiple( "m²", 1 ).addMultiple( "km²", 10**6 ).addMultiple( "cm²", 10**-4).addMultiple( "mm²", 10**-6)
 VOLUME = UnitType().addMultiple( "L", 1 ).addMultiple( "mL", 10**-3 ).addMultiple( "µL", 10**-6 ).addMultiple( "nL", 10**-9 ).addMultiple( "pL", 10**-12 )
@@ -57,6 +58,9 @@ TEMPERATURE = UnitType().addMultiple( "°C", 1 )
 PRESSURE = UnitType().addMultiple( "atm", 1 )
 LUMINOUSINTENSITY = UnitType().addMultiple( "cd", 1 )
 POWER = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ).addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
+
+#Scales for freedom units
+DISTANCEFREEDOM = UnitType().addMultiple( "feet", 1 ).addMultiple( "yards", 3 ).addMultiple( "miles", 5280 )
 
 class Unit:
     def __init__( self, friendlyName, unitType, toSIMultiplication, toSIAddition ):
@@ -132,14 +136,14 @@ class ModificableMessage:
 
 units = []
 
-#Area
+#Area Freedom to SI
 units.append( NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)", DISTANCE, 0.00064516 ) ) #inch squared
 units.append( NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)", DISTANCE, 0.092903 ) )     #foot squared
 units.append( NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)", DISTANCE, 2589990 ) )       #mile squared
 units.append( NormalUnit( "acre", "acres?", AREA, 4046.8564224 ) )                                  #acre
 units.append( NormalUnit( "rood", "roods?", AREA, 1011.7141 ) )                                     #rood
 
-#Volume
+#Volume Freedom to SI
 units.append( NormalUnit( "pint", "pints?|pt", VOLUME, 0.473176 ) )                     #pint
 units.append( NormalUnit( "quart", "quarts?|qt", VOLUME, 0.946353 ) )                   #quart
 units.append( NormalUnit( "gallon", "gal(lons?)?", VOLUME, 3.78541 ) )                  #gallon
@@ -150,7 +154,7 @@ units.append( NormalUnit( "barrel", "drum|barrels?", VOLUME, 119.240471 ) )     
 units.append( NormalUnit( "peck", "pecks?", VOLUME, 8.809768 ) )                        #pecks
 units.append( NormalUnit( "bushel", "bushels?", VOLUME, 35.23907016688 ) )              #bushels
 
-#Energy
+#Energy Freedom to SI
 units.append( NormalUnit( "foot-pound", "ft( |\*)?lbf?|foot( |-)pound", ENERGY, 1.355818 ) )    #foot-pound
 units.append( NormalUnit( "British thermal unit", "btu", ENERGY, 1055.06 ) )                    #British thermal unit
 units.append( NormalUnit( "calories", "cal(ories?)?", ENERGY, 4.184 ) )                         #calories
@@ -158,25 +162,25 @@ units.append( NormalUnit( "kilocalories", "kcal(ories?)?", ENERGY, 4184 ) )     
 units.append( NormalUnit( "ton of refrigeration", "ton of refrigeration", ENERGY, 3500 ) )      #ton of refrigeration
 units.append( NormalUnit( "ergs", "ergs?", ENERGY, 10**-7 ) )                                   #ergs
 
-#Force
+#Force Freedom to SI
 units.append( NormalUnit( "pound-force", "pound( |-)?force|lbf", FORCE, 4.448222 ) )            #pound-force
 
-#Torque
+#Torque Freedom to SI
 units.append( NormalUnit( "pound-foot", "Pound(-| )?(f(oo|ee)?t)|lbf( |\*)?ft", TORQUE, 1.355818 ) )      #pound-foot
 
-#Velocity
+#Velocity Freedom to SI
 units.append( NormalUnit( "miles per hour", "miles? per hour|mph|mi/h", VELOCITY, 0.44704 ) )             #miles per hour
 units.append( NormalUnit( "knot", "knots?|kts?", VELOCITY, 0.51444444444 ) )                              #knots
 units.append( NormalUnit( "feet per second", "f(oo|ee)?t ?(per|/|p) ?s(ec|onds?)?", VELOCITY, 0.3048 ) )  #feet per second
 
-#Temperature
+#Temperature Freedom to SI
 units.append( NormalUnit( "degrees fahrenheit", "((°|º|deg(ree)?s?) ?)?(fahrenheit|freedom|f)", TEMPERATURE, 5/9, -32 ) )  #Degrees freedom
 units.append( NormalUnit( "degrees rankine", "((°|º|deg(ree)?s?) ?)?(ra?(nkine)?)", TEMPERATURE, 5/9, -491.67 ) )          #Degrees rankine
 
-#Pressure
+#Pressure Freedom to SI
 units.append( NormalUnit( "pound per square inch", "pounds?((-| )?force)? per square in(ch)?|lbf\/in\^2|psi", PRESSURE, 0.068046 ) ) #Pounds per square inch
 
-#Mass
+#Mass Freedom to SI
 units.append( NormalUnit( "ounce", "ounces?|oz", MASS, 28.349523125 ) )                  #ounces
 units.append( NormalUnit( "pound", "pounds?|lbs?", MASS, 453.59237 ) )                   #pounds
 units.append( NormalUnit( "stone", "stones?|(?<!1)st", MASS, 6350.2293318 ) )            #stones
@@ -188,9 +192,9 @@ units.append( NormalUnit( "troy pound", "troy ?pounds?", MASS, 373.2417216 ) )  
 units.append( NormalUnit( "dram", "drams?", MASS, 1.7718451953125 ) )                    #drams
 units.append( NormalUnit( "hundredweight", "hundredweights?|cwt", MASS, 50802 ) )        #hundredweights
 
-#Distance
+#Distance Freedom to SI
 units.append( NormalUnit( "inch", "inch(es)?", DISTANCE, 0.0254 ) )                           #inch
-units.append( NormalUnit( "foot", "f(oo|ee)?t", DISTANCE, 0.3048 ) )                      #foot
+units.append( NormalUnit( "foot", "f(oo|ee)?t", DISTANCE, 0.3048 ) )                          #foot
 units.append( NormalUnit( "mile", "mi(les?)?", DISTANCE, 1609.344 ) )                         #mile
 units.append( NormalUnit( "yard", "yd|yards?", DISTANCE, 0.9144 ) )                           #yard
 units.append( NormalUnit( "nautical mile", "nautical ?(mi(les?)?)?|nmi", DISTANCE, 1852 ) )   #nautical miles
@@ -200,10 +204,13 @@ units.append( NormalUnit( "furlong", "furlongs?", DISTANCE, 201.1680 ) )        
 units.append( NormalUnit( "rack unit", "rack ?units?|ru", DISTANCE, 0.04445 ) )               #rack units
 units.append( NormalUnit( "smoot", "smoots?", DISTANCE, 1.7018 ) )                            #Smoot units
 
-#Luminous intensity
+#Distance SI to Freedom
+units.append( NormalUnit( "meter", DISTANCEFREEDOM, 3.28084 ) )
+
+#Luminous intensity  Imperial to SI
 #units.append( NormalUnit( "Lumen", "lumens?|lm", LUMINOUSINTENSITY, 1 ) )          #lumens
 
-#Power
+#Power Freedom to SI
 units.append( NormalUnit( "horsepower", "horse ?power", POWER, 745.699872 ) )         #horsepower
 
 #Processes a string, converting freedom units to science units.
