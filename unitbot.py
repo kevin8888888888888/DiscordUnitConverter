@@ -20,7 +20,7 @@ from datetime import timedelta
 import unitconversion
 import unitpedialib
 
-description = """UnitConverter: A Discord bot that conversts Freedom units to SI and vice versa! Also features a !unitpedia command, allowing users to learn about (all) units."""
+description = """UnitConverter: A Discord bot that converts Freedom units to SI and vice versa! Also features a !unitpedia command, allowing users to learn about (all) units."""
 bot = commands.Bot(command_prefix='uc!', description=description)
 
 starttime = datetime.utcnow()
@@ -86,10 +86,10 @@ async def about(ctx): # May be changed in the future to be send in DM to prevent
     embed.set_thumbnail(url=bot.user.avatar_url)
     embed.add_field(name=":information_source: **Commands**", value="Please use the `uc!help` to list all possible commands!")
     embed.add_field(name=":hash: **Developers**", value="Created by @Kevin#8627")
-    embed.add_field(name=":symbols: **Contributing**", value="Want to help with the bot? You're welcome to do so!\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)")
-    embed.add_field(name=":new: **Version information**", value="Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`".format(date.fromtimestamp(os.path.getmtime('unitbot.py')), discord.__version__, sys.version.split(' ')[0]), inline=True)
-    embed.add_field(name=":up: **Uptime information**", value="Bot started: `{}`\nBot uptime: `{}`".format(starttime.strftime("%Y-%m-%d %H:%M:%S"), (datetime.utcnow().replace(microsecond=0) - starttime.replace(microsecond=0))), inline=True)
-    embed.add_field(name=":free: **Adding the bot**", value="Want to add this bot to **your** server? [Click here to add it!](https://discordapp.com/oauth2/authorize?client_id=732247062376087582&scope=bot&permissions=67619905)")
+    embed.add_field(name=":symbols: **Contributing**", value="Want to help with the bot?\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)")
+    embed.add_field(name=":new: **Version**", value="Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`".format(date.fromtimestamp(os.path.getmtime('unitbot.py')), discord.__version__, sys.version.split(' ')[0]), inline=True)
+    embed.add_field(name=":up: **Uptime**", value="Bot started: `{}`\nBot uptime: `{}`".format(starttime.strftime("%Y-%m-%d %H:%M:%S"), (datetime.utcnow().replace(microsecond=0) - starttime.replace(microsecond=0))), inline=True)
+    embed.add_field(name=":free: **Adding the bot**", value="Want to add this bot to your server? [Click here!](https://discordapp.com/oauth2/authorize?client_id=732247062376087582&scope=bot&permissions=67619905)")
     await ctx.send(embed=embed)
 
 

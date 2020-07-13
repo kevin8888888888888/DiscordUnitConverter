@@ -21,11 +21,11 @@
         "value": "Want to help with the bot?\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)"
       },
       {
-        "name": ":new: **Version information**",
+        "name": ":new: **Version**",
         "value": "Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`"
       },
       {
-        "name": ":up: **Uptime information**",
+        "name": ":up: **Uptime**",
         "value": "Bot started: `{}`\nBot uptime: `{}`"
       },
       {
