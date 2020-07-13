@@ -22,13 +22,11 @@
       },
       {
         "name": ":new: **Version information**",
-        "value": "Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`",
-        "inline": true
+        "value": "Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`"
       },
       {
         "name": ":up: **Uptime information**",
-        "value": "Bot started: `{}`\nBot uptime: `{}`",
-        "inline": true
+        "value": "Bot started: `{}`\nBot uptime: `{}`"
       },
       {
         "name": ":free: **Adding the bot**",
