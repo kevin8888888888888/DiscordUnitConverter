@@ -1,13 +1,6 @@
-# DiscordUnitCorrector
-A fully functional public Discord bot that automatically corrects non-SI units (imperial, etc) to SI-ones (metric, etc)
-This bot will listen for any messages in Discord that contain non-SI units and when detected, reply with the message converted to SI-Units.
-
-Are you tired of a car that weighs 100 Stones, is 10 feet high, and can drive 50 miles at 5 degrees freedom?
-Worry no more! Your car weighs 0.64t, is 3.05m high, and can drive 80.47km at -15°C from now on!
-
-Simply add this bot to your server! You can choose to run it yourself or use the bot that is updated and hosted by me [Wendelstein 7](https://github.com/Wendelstein7).
-
-
+# DiscordUnitConverter
+A Discord bot that automatically converts imperial units to SI and vice versa.
+    
 ## Credits
 
 **The unit conversion library was originally created by ficolas2, https://github.com/ficolas2, 2018/01/21**
@@ -18,12 +11,6 @@ Simply add this bot to your server! You can choose to run it yourself or use the
 
 ## Collaborate and Help this bots
 
-### Want to help us with developing this bot?
-
-Nice! Feel free to fork this project and make improvements, add features and fix bugs. Once your work is ready, make a PR (Pull Request) to this REPO and we will review and possibly merge it if you did good!
-(crappy PRs will be ignored, good PRs will be merged. You will get credits if (parts of) your code got merged.)
-
-For more help: please [join the official UnitCorrector support and chat server](https://discord.gg/qzaVppN)
 
 ### How to run yourself (NOT RECCOMMENDED unless you want to develop)
 * Install the main dependency Discord.py using `python3 -m pip install -U discord.py` (make sure you got the rewrite branch!)
