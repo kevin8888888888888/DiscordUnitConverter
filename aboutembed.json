@@ -10,7 +10,7 @@
     "fields": [
       {
         "name": ":information_source: **Commands**",
-        "value": "Please use the `!help` to list all possible commands!"
+        "value": "Use `uc!help` to list all commands."
       },
       {
         "name": ":hash: **Developers**",
@@ -18,7 +18,7 @@
       },
       {
         "name": ":symbols: **Contributing**",
-        "value": "Want to help with the bot? You're welcome to do so!\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)"
+        "value": "Want to help with the bot?\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)"
       },
       {
         "name": ":new: **Version information**",
@@ -32,7 +32,7 @@
       },
       {
         "name": ":free: **Adding the bot**",
-        "value": "Want to add this bot to **your** server? [Click here to add it!](https://discordapp.com/oauth2/authorize?client_id=732247062376087582&scope=bot&permissions=67619905)"
+        "value": "Want to add this bot to your server? [Click here!](https://discordapp.com/oauth2/authorize?client_id=732247062376087582&scope=bot&permissions=67619905)"
 
       }
     ]
