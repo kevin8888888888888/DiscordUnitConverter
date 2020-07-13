@@ -1,16 +1,8 @@
-# Discord Unit Corrector Bot
-#
+# Discord Unit Converter Bot
 # This bot is licenced under the MIT License [Copyright (c) 2018 Wendelstein7]
-#
 # This is a Discord bot running python3 using the Discord.py library
-# This bot will listen for any messages in Discord that contain non-SI units and when detected, reply with the message converted to SI-Units.
-# Are you tired of a car that weighs 100 Stones, is 10 feet high, and can drive 50 miles at 5 degrees freedom?
-# Worry no more! Your car weighs 0.64t, is 3.05m high, and can drive 80.47km at -15°C from now on!
-# Simply add this bot to your server! You can choose to run it yourself or add the version that is updated and hosted by me [Wendelstein 7]
-
 # The unit conversion library was riginally created by ficolas2, https://github.com/ficolas2, 2018/01/21
 # The unit conversion library has been modified and updated by ficolas2 and Wendelstein7, https://github.com/Wendelstein7
-
 # Licenced under: MIT License, Copyright (c) 2018 Wendelstein7 and ficolas2
 
 import discord
@@ -93,11 +85,11 @@ async def about(ctx): # May be changed in the future to be send in DM to prevent
     embed = discord.Embed(title="UnitCorrector", colour=discord.Colour(0xffffff), url="https://github.com/Wendelstein7/DiscordUnitCorrector", description="A fully functional public Discord bot that automatically corrects non-SI units (imperial, etc) to SI-ones (metric, etc) This bot will listen for any messages in Discord that contain non-SI units and when detected, reply with the message converted to SI-Units.\n\n*Are you tired of a car that weighs 100 Stones, is 10 feet high, and can drive 50 miles at 5 degrees freedom? Worry no more! Your car weighs 0.64t, is 3.05m high, and can drive 80.47km at -15°C from now on!*")
     embed.set_thumbnail(url=bot.user.avatar_url)
     embed.add_field(name=":information_source: **Commands**", value="Please use the `!help` to list all possible commands!")
-    embed.add_field(name=":hash: **Developers**", value="**HydroNitrogen** - Creator and main developer\n**ficolas** - Developer")
-    embed.add_field(name=":symbols: **Contributing**", value="Want to help with the bot? You're welcome to do so!\n[Visit our GitHub for more information!](https://github.com/Wendelstein7/DiscordUnitCorrector)")
+    embed.add_field(name=":hash: **Developers**", value="Created by @Kevin#8627")
+    embed.add_field(name=":symbols: **Contributing**", value="Want to help with the bot? You're welcome to do so!\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)")
     embed.add_field(name=":new: **Version information**", value="Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`".format(date.fromtimestamp(os.path.getmtime('unitbot.py')), discord.__version__, sys.version.split(' ')[0]), inline=True)
     embed.add_field(name=":up: **Uptime information**", value="Bot started: `{}`\nBot uptime: `{}`".format(starttime.strftime("%Y-%m-%d %H:%M:%S"), (datetime.utcnow().replace(microsecond=0) - starttime.replace(microsecond=0))), inline=True)
-    embed.add_field(name=":free: **Adding the bot**", value="Want to add this bot to **your** server? [Click here to add it!](https://discordapp.com/oauth2/authorize?client_id=405724335525855232&scope=bot&permissions=67619905)")
+    embed.add_field(name=":free: **Adding the bot**", value="Want to add this bot to **your** server? [Click here to add it!](https://discordapp.com/oauth2/authorize?client_id=732247062376087582&scope=bot&permissions=67619905)")
     await ctx.send(embed=embed)
 
 
