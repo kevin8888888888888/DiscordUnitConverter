@@ -61,6 +61,7 @@ POWER = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ).addMultipl
 
 #Scales for freedom units
 DISTANCEFREEDOM = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
+AREAFREEDOM = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
 
 class Unit:
     def __init__( self, friendlyName, unitType, toSIMultiplication, toSIAddition ):
@@ -142,6 +143,8 @@ units.append( NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)", DISTAN
 units.append( NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)", DISTANCE, 2589990 ) )       #mile squared
 units.append( NormalUnit( "acre", "acres?", AREA, 4046.8564224 ) )                                  #acre
 units.append( NormalUnit( "rood", "roods?", AREA, 1011.7141 ) )                                     #rood
+#Area SI to Freedom
+units.append( NormalUnit( "acre", "acres?", AREAFREEDOM, 40470000 ) )
 
 #Volume Freedom to SI
 units.append( NormalUnit( "pint", "pints?|pt", VOLUME, 0.473176 ) )                     #pint
@@ -203,7 +206,6 @@ units.append( NormalUnit( "fathom", "fathoms?", DISTANCE, 1.8288 ) )            
 units.append( NormalUnit( "furlong", "furlongs?", DISTANCE, 201.1680 ) )                      #furlong
 units.append( NormalUnit( "rack unit", "rack ?units?|ru", DISTANCE, 0.04445 ) )               #rack units
 units.append( NormalUnit( "smoot", "smoots?", DISTANCE, 1.7018 ) )                            #Smoot units
-
 #Distance SI to Freedom
 units.append( NormalUnit( "millimeter", "millimeters?|mm", DISTANCEFREEDOM, 0.0393701 ) )      #centimeters
 units.append( NormalUnit( "centimeter", "centimeters?|cm", DISTANCEFREEDOM, 0.393701 ) )       #centimeters
