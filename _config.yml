@@ -1,0 +1,8 @@
+title: Discordunitconverter
+description: A Discord bot that automatically converts imperial units to SI and vice versa.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
