@@ -20,30 +20,30 @@ from datetime import timedelta
 import unitconversion
 import unitpedialib
 
-description = """UnitConverter: A Discord bot that converts Freedom units to SI and vice versa! Also features a !unitpedia command, allowing users to learn about (all) units."""
+description = """UnitConverter: A Discord bot that converts Freedom units to SI and vice versa! Also features the uc!unitpedia command."""
 bot = commands.Bot(command_prefix='uc!', description=description)
 
 starttime = datetime.utcnow()
 
-@bot.event
+@bot.event # Startup message on bot console
 async def on_ready():
     print('Discord Unit Converter Bot: Logged in as {} (id: {})\n'.format(bot.user.name, bot.user.id))
 
-@bot.event
-async def on_message(message): # Catches sent messages and converts units if neccesary. Most of the code behind this is in 'unitconversion.py'.
+@bot.event # Catches sent messages and converts units if neccesary. Most of the code behind this is in 'unitconversion.py'.
+async def on_message(message):
     if bot.user.id is not message.author.id and message.author.bot is False and (message.guild is None or (message.guild is not None and discord.utils.get(message.guild.roles, name='imperial certified') not in message.author.roles)):
         processedMessage = unitconversion.process(message.content)
         if processedMessage is not None:
-            correctionText = ("Converted " + (message.author.name) + "'s message: '```" + processedMessage + "```")
+            correctionText = ("Converted " + (message.author.name) + "'s message: ```"processedMessage"```")
             await message.channel.send(correctionText)
     await bot.process_commands(message)
 
-@bot.event
+@bot.event # Log user commands on bot console
 async def on_command(ctx):
     print('[{}] Fired {} by {}'.format(datetime.now(), ctx.command, ctx.author))
 
-@bot.command(name='unitconverter')
-async def unitconverter(ctx): # May be converted to a nice embed if needed in the future.
+@bot.command(name='unitconverter') # Unitconverter command
+async def unitconverter(ctx):
     """Lists supported units by the unit corrector bot."""
     supportedUnits = ""
     for unit in unitconversion.units:
@@ -53,27 +53,27 @@ async def unitconverter(ctx): # May be converted to a nice embed if needed in th
             supportedUnits += unit.getName()
     await ctx.send("The bot currently supports the following units:\n```" + supportedUnits + "```")
 
-@bot.command(name='uptime', hidden=True)
-async def uptime(ctx): # May be deprecated, changed or removed as !about already shows the uptime.
+@bot.command(name='uptime') # Uptime command
+async def uptime(ctx):
     """Shows how long this instance of the bot has been online."""
     await ctx.send('```Bot started: {}\nBot uptime: {}```'.format(starttime, (datetime.now() - starttime)))
 
-@bot.command(name='unitpedia')
-async def unitpedia(ctx, *, search: str): # Unitpedia! Still needs need a lot of expansion and work. Most of the code behind this is in 'unitpedialib.py'.
-    """Gives information about an unit. Try uc!unitpedia mi, uc!unitpedia litre, uc!unitpedia °C, etc..."""
+@bot.command(name='unitpedia') # Unitpedia command
+async def unitpedia(ctx, *, search: str):
+    """Gives information about a unit. Try uc!unitpedia liter."""
     result = unitpedialib.lookup(search)
     if result != "notfound":
         await ctx.send(embed=result)
     else:
         await ctx.send('```Sorry, your search query has not returned any results. Try to search using different words or abbreviations.\n\n*Unitpedia is not complete and needs community submissions. Use the uc!about command to get our Github link.*```')
 
-@unitpedia.error
+@unitpedia.error # Unitpedia incomplete command
 async def unitpedia_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('You will need to enter a query to search for. Try `uc!unitpedia metre`, `uc!unitpedia °F`, `uc!unitpedia mile²`, etc...')
+        await ctx.send('You need to enter a unit to search for. Try `uc!unitpedia metre`, `uc!unitpedia °F`, `uc!unitpedia mile²`, etc...')
 
-@bot.command(name='about')
-async def about(ctx): # May be changed in the future to be send in DM to prevent malicious use for spam purposes.
+@bot.command(name='about') # About command
+async def about(ctx):
     """Shows information about the bot as well as the relevant version numbers, uptime and useful links."""
     embed = discord.Embed(title="UnitConverter", colour=discord.Colour(0xffffff), url="https://github.com/kevin8888888888888/DiscordUnitConverter", description="A bot that automatically detects units and convters them from SI to Freedom Units and vice versa.")
     embed.set_thumbnail(url=bot.user.avatar_url)
