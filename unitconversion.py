@@ -46,7 +46,6 @@ class UnitType:
         return self.getStringFromMultiple( value, sortedMultiples[-1] )
 
 
-
 class Unit:
     def __init__( self, friendlyName, unitType, toSIMultiplication, toSIAddition ):
         self._friendlyName = friendlyName
