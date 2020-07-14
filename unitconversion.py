@@ -45,24 +45,7 @@ class UnitType:
                 return self.getStringFromMultiple(value, multiple)
         return self.getStringFromMultiple( value, sortedMultiples[-1] )
 
-#Scales for SI Units
-DISTANCE = UnitType().addMultiple("m", 1).addMultiple( "km", 10**3 ).addMultiple( "cm", 10**-2).addMultiple( "mm", 10**-3).addMultiple( "µm", 10**-6).addMultiple( "nm", 10**-9).addMultiple( "pm", 10**-12 )
-AREA = UnitType().addMultiple( "m²", 1 ).addMultiple( "km²", 10**6 ).addMultiple( "cm²", 10**-4).addMultiple( "mm²", 10**-6)
-VOLUME = UnitType().addMultiple( "L", 1 ).addMultiple( "mL", 10**-3 ).addMultiple( "µL", 10**-6 ).addMultiple( "nL", 10**-9 ).addMultiple( "pL", 10**-12 )
-ENERGY = UnitType().addMultiple( "J", 1 ).addMultiple( "TJ", 10**12 ).addMultiple( "GJ", 10**9 ).addMultiple( "MJ", 10**6 ).addMultiple( "kJ", 10**3 ).addMultiple( "mJ", 10**-3 ).addMultiple( "µJ", 10**-6 ).addMultiple( "nJ", 10**-9 )
-FORCE = UnitType().addMultiple( "N", 1 ).addMultiple( "MN", 10**6 ).addMultiple( "kN", 10**3 ).addMultiple( "mN", 10**-3 ).addMultiple( "µN", 10**-6 ).addMultiple( "nN", 10**-9 ).addMultiple( "pN", 10**-12 )
-TORQUE = UnitType().addMultiple( "N*m", 1 )
-VELOCITY = UnitType().addMultiple("m/s", 1).addMultiple( "km/s", 10**3 )
-MASS = UnitType().addMultiple( "g", 1 ).addMultiple( "kg", 10**3 ).addMultiple( "mg", 10**-3 ).addMultiple( "µg", 10**-6 ).addMultiple( "ng", 10**-9 ).addMultiple( "pg", 10**-12 )
-TEMPERATURE = UnitType().addMultiple( "°C", 1 )
-PRESSURE = UnitType().addMultiple( "atm", 1 )
-LUMINOUSINTENSITY = UnitType().addMultiple( "cd", 1 )
-POWER = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ).addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
 
-#Scales for freedom units
-DISTANCEFREEDOM = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
-AREAFREEDOM = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
-MASSFREEDOM = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
 
 class Unit:
     def __init__( self, friendlyName, unitType, toSIMultiplication, toSIAddition ):
@@ -76,7 +59,7 @@ class Unit:
         if self._toSIAddition == 0 and SIValue == 0:
             return
         return self._unitType.getString( SIValue )
-    
+
     def getName( self ):
         return self._friendlyName
 
@@ -114,7 +97,7 @@ class NormalUnit( Unit ):
                 lastPoint = repl["end"]
             finalMessage += originalText[ lastPoint : ]
             message.setText(finalMessage)
-            
+
     def getName( self ):
         return self._friendlyName
 
@@ -135,6 +118,33 @@ class ModificableMessage:
 
     def isModified(self):
         return self._modified
+
+#Processes a string, converting freedom units to science units.
+def process(message):
+    modificableMessage = ModificableMessage(REMOVE_REGEX.sub("", message))
+    for u in units:
+        u.convert(modificableMessage)
+    if modificableMessage.isModified():
+        return modificableMessage.getText()
+
+#Scales for SI Units
+DISTANCE    = UnitType().addMultiple("m", 1).addMultiple( "km", 10**3 ).addMultiple( "cm", 10**-2).addMultiple( "mm", 10**-3).addMultiple( "µm", 10**-6) .addMultiple( "nm", 10**-9).addMultiple( "pm", 10**-12 )
+AREA        = UnitType().addMultiple( "m²", 1 ).addMultiple( "km²", 10**6 ).addMultiple( "cm²", 10**-4).addMultiple( "mm²", 10**-6)
+VOLUME      = UnitType().addMultiple( "L", 1 ).addMultiple( "mL", 10**-3 ).addMultiple( "µL", 10**-6 ).addMultiple( "nL", 10**-9 ).addMultiple( "pL", 10**-12 )
+ENERGY      = UnitType().addMultiple( "J", 1 ).addMultiple( "TJ", 10**12 ).addMultiple( "GJ", 10**9 ).addMultiple( "MJ", 10**6 ).addMultiple( "kJ", 10**3 ) .addMultiple( "mJ", 10**-3 ).addMultiple( "µJ", 10**-6 ).addMultiple( "nJ", 10**-9 )
+FORCE       = UnitType().addMultiple( "N", 1 ).addMultiple( "MN", 10**6 ).addMultiple( "kN", 10**3 ).addMultiple( "mN", 10**-3 ).addMultiple( "µN", 10**-6 ).addMultiple( "nN", 10**-9 ).addMultiple( "pN", 10**-12 )
+TORQUE      = UnitType().addMultiple( "N*m", 1 )
+VELOCITY    = UnitType().addMultiple("m/s", 1).addMultiple( "km/s", 10**3 )
+MASS        = UnitType().addMultiple( "g", 1 ).addMultiple( "kg", 10**3 ) .addMultiple( "mg", 10**-3 ).addMultiple( "µg", 10**-6 ).addMultiple( "ng", 10**-9 ).addMultiple( "pg", 10**-12 )
+TEMPERATURE = UnitType().addMultiple( "°C", 1 )
+PRESSURE    = UnitType().addMultiple( "atm", 1 )
+LUMINOUSINTENSITY = UnitType().addMultiple( "cd", 1 )
+POWER       = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ) .addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
+#Scales for freedom units
+DISTANCEFREEDOM = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
+AREAFREEDOM = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
+MASSFREEDOM = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
+
 
 units = []
 
@@ -216,19 +226,8 @@ units.append( NormalUnit( "millimeter", "millimeters?|mm", DISTANCEFREEDOM, 0.03
 units.append( NormalUnit( "centimeter", "centimeters?|cm", DISTANCEFREEDOM, 0.393701 ) )       #centimeters
 units.append( NormalUnit( "meter", "meters?", DISTANCEFREEDOM, 39.3701 ) )                     #meters
 
-
-
-
 #Luminous intensity  Imperial to SI
-#units.append( NormalUnit( "Lumen", "lumens?|lm", LUMINOUSINTENSITY, 1 ) )          #lumens
+units.append( NormalUnit( "Lumen", "lumens?|lm", LUMINOUSINTENSITY, 1 ) )          #lumens
 
 #Power Freedom to SI
 units.append( NormalUnit( "horsepower", "horse ?power", POWER, 745.699872 ) )         #horsepower
-
-#Processes a string, converting freedom units to science units.
-def process(message):
-    modificableMessage = ModificableMessage(REMOVE_REGEX.sub("", message))
-    for u in units:
-        u.convert(modificableMessage)
-    if modificableMessage.isModified():
-        return modificableMessage.getText()

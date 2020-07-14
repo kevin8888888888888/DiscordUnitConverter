@@ -29,6 +29,10 @@ starttime = datetime.utcnow()
 async def on_ready():
     print('Discord Unit Converter Bot: Logged in as {} (id: {})\n'.format(bot.user.name, bot.user.id))
 
+@bot.event # Log user commands on bot console
+async def on_command(ctx):
+    print('[{}] Fired {} by {}'.format(datetime.now(), ctx.command, ctx.author))
+
 @bot.event # Catches sent messages and converts units if neccesary. Most of the code behind this is in 'unitconversion.py'.
 async def on_message(message):
     if bot.user.id is not message.author.id and message.author.bot is False and (message.guild is None or (message.guild is not None and discord.utils.get(message.guild.roles, name='imperial certified') not in message.author.roles)):
@@ -37,10 +41,6 @@ async def on_message(message):
             correctionText = ("Converted " + (message.author.name) + "'s message: ```" + processedMessage + "```")
             await message.channel.send(correctionText)
     await bot.process_commands(message)
-
-@bot.event # Log user commands on bot console
-async def on_command(ctx):
-    print('[{}] Fired {} by {}'.format(datetime.now(), ctx.command, ctx.author))
 
 @bot.command(name='unitconverter') # Unitconverter command
 async def unitconverter(ctx):
