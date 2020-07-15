@@ -146,9 +146,9 @@ MASS2 = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).ad
 units = []
 
 #Area Freedom to SI
-units.append(NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)",       DISTANCE, 0.00064516 ) )            #inch squared
-units.append(NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)",         DISTANCE, 0.092903 ) )              #foot squared
-units.append(NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)",          DISTANCE, 2589990 ) )               #mile squared
+units.append(NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)",       AREA, 0.00064516 ) )            #inch squared
+units.append(NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)",         AREA, 0.092903 ) )              #foot squared
+units.append(NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)",          AREA, 2589990 ) )               #mile squared
 units.append(NormalUnit( "acre", "acres?",                                      AREA, 4046.8564224 ) )              #acre
 units.append(NormalUnit( "rood", "roods?",                                      AREA, 1011.7141 ) )                 #rood
 #Area SI to Freedom
