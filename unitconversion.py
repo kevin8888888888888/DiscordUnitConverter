@@ -138,7 +138,7 @@ PRESSURE    = UnitType().addMultiple( "atm", 1 )
 LUMINOUS    = UnitType().addMultiple( "cd", 1 )
 POWER       = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ) .addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
 #Scales for freedom units
-DISTANCE2 = UnitType().addMultiple( "inches", 1 ).addMultiple( "feetTESTEST", 12 ).addMultiple( "miles", 63360 )
+xDISTANCE = UnitType().addMultiple( "inches", 1 ).addMultiple( "feetTESTEST", 12 ).addMultiple( "miles", 63360 )
 AREA2 = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
 MASS2 = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
 
@@ -219,9 +219,9 @@ units.append(NormalUnit( "furlong", "furlongs?",                                
 units.append(NormalUnit( "rack unit", "rack ?units?|ru",                        DISTANCE, 0.04445 ) )               #rack units
 units.append(NormalUnit( "smoot", "smoots?",                                    DISTANCE, 1.7018 ) )                #Smoot units
 #Distance SI to Freedom
-units.append(NormalUnit( "millimeter", "millimeters?|mm",                       DISTANCE2, 0.0393701 ) )            #centimeter
-units.append(NormalUnit( "centimeter", "centimeters?|cm",                       DISTANCE2, 0.393701 ) )             #centimeter
-units.append(NormalUnit( "meter", "meters?",                                    DISTANCE2, 39.3701 ) )              #meter
+units.append(NormalUnit( "millimeter", "millimeters?|mm",                       xDISTANCE, 0.0393701 ) )            #centimeter
+units.append(NormalUnit( "centimeter", "centimeters?|cm",                       xDISTANCE, 0.393701 ) )             #centimeter
+units.append(NormalUnit( "meter", "meters?",                                    xDISTANCE, 39.3701 ) )              #meter
 
 #Luminous intensity  Imperial to SI
 units.append(NormalUnit( "Lumen", "lumens?|lm",                                 LUMINOUS, 1 ) )                     #lumen
