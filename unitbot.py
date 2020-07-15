@@ -1,5 +1,4 @@
 # Discord Unit Converter Bot
-# This bot is licenced under the MIT License [Copyright (c) 2018 Wendelstein7]
 # This is a Discord bot running python3 using the Discord.py library
 # The unit conversion library was riginally created by ficolas2, https://github.com/ficolas2, 2018/01/21
 # The unit conversion library has been modified and updated by ficolas2 and Wendelstein7, https://github.com/Wendelstein7
@@ -70,15 +69,15 @@ async def unitpedia(ctx, *, search: str):
 @unitpedia.error # Unitpedia incomplete command
 async def unitpedia_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('You need to enter a unit to search for. Try `uc!unitpedia metre`, `uc!unitpedia °F`, `uc!unitpedia mile²`, etc...')
+        await ctx.send('You must enter a unit to search for. Try `uc!unitpedia metre`, `uc!unitpedia °F`, `uc!unitpedia mile²`, etc...')
 
 @bot.command(name='about') # About command
 async def about(ctx):
     """Shows information about the bot as well as the relevant version numbers, uptime and useful links."""
     embed = discord.Embed(title="UnitConverter", colour=discord.Colour(0xffffff), url="https://github.com/kevin8888888888888/DiscordUnitConverter", description="A bot that automatically detects units and convters them from SI to Freedom Units and vice versa.")
     embed.set_thumbnail(url=bot.user.avatar_url)
-    embed.add_field(name=":information_source: **Commands**", value="Please use the `uc!help` to list all possible commands!")
-    embed.add_field(name=":hash: **Developers**", value="Created by @Kevin#8627")
+    embed.add_field(name=":information_source: **Commands**", value="Use `uc!help` to list all commands.")
+    embed.add_field(name=":hash: **Developers**", value="Created by <@!247070105916276736>")
     embed.add_field(name=":symbols: **Contributing**", value="Want to help with the bot?\n[Visit our GitHub for more information!](https://github.com/kevin8888888888888/DiscordUnitConverter)")
     embed.add_field(name=":new: **Version**", value="Bot version: `{}`\nDiscord.py version: `{}`\nPython version: `{}`".format(date.fromtimestamp(os.path.getmtime('unitbot.py')), discord.__version__, sys.version.split(' ')[0]))
     embed.add_field(name=":up: **Uptime**", value="Bot started: `{}`\nBot uptime: `{}`".format(starttime.strftime("%Y-%m-%d %H:%M:%S"), (datetime.utcnow().replace(microsecond=0) - starttime.replace(microsecond=0))))
