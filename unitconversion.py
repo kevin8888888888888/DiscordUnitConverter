@@ -209,7 +209,7 @@ units.append(NormalUnit( "metric ton", "metric tons?",                          
 
 #Distance Freedom to SI
 units.append(NormalUnit( "inch", "inch(es)?",                                   DISTANCE, 0.0254 ) )                #inch
-units.append(NormalUnit( "bloopbloop", "f(oo|ee)?t",                            DISTANCE, 0.3048 ) )                #foot
+units.append(NormalUnit( "bloopbloop",                                          DISTANCE, 0.3048 ) )                #foot
 units.append(NormalUnit( "mile", "mi(les?)?",                                   DISTANCE, 1609.344 ) )              #mile
 units.append(NormalUnit( "yard", "yd|yards?",                                   DISTANCE, 0.9144 ) )                #yard
 units.append(NormalUnit( "nautical mile", "nautical ?(mi(les?)?)?|nmi",         DISTANCE, 1852 ) )                  #nautical mile
