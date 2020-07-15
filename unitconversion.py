@@ -12,11 +12,10 @@ from math import log10, floor
 END_NUMBER_REGEX = re.compile("(^|\s)(-|−)?[0-9]+([\,\.][0-9]+)?\s+$")
 REMOVE_REGEX = re.compile("((´|`)+[^>]+(´|`)+)")
 
-UNICODEMINUS = True    # Option: Should UNICODE minus symbol '−' be converted to a standard dash '-'?
-SPACED = True    # Option: Should there be a space between the number and the unit? DEFAULT: True
+SPACED = True            # Option: Should there be a space between the number and the unit? DEFAULT: True
 USESIGNIFICANT = True    # Option: Should rounding be done using significancy? If false, rounding will be done using decimal places. DEFAULT: True
-SIGNIFICANTFIGURES = 3    # Option: The amount of significant digits that will be kept when rounding.  Ignored when USESIGNIFICANT = False. DEFAULT: 3
-DECIMALS = 2    # Option: The amount of decimals to output after conversion. Ignored when USESIGNIFICANT = True. DEFAULT: 2
+SIGNIFICANTFIGURES = 3   # Option: The amount of significant digits that will be kept when rounding.  Ignored when USESIGNIFICANT = False. DEFAULT: 3
+DECIMALS = 2             # Option: The amount of decimals to output after conversion. Ignored when USESIGNIFICANT = True. DEFAULT: 2
 
 def roundsignificant(number):
     if number == 0:
@@ -73,8 +72,7 @@ class NormalUnit( Unit ):
 
     def convert( self, message ):
         originalText = message.getText()
-        if UNICODEMINUS:
-            originalText = originalText.replace('−', '-')
+        originalText = originalText.replace('−', '-')
         iterator = self._regex.finditer( originalText )
         replacements = []
         for find in iterator:
@@ -137,96 +135,96 @@ VELOCITY    = UnitType().addMultiple("m/s", 1).addMultiple( "km/s", 10**3 )
 MASS        = UnitType().addMultiple( "g", 1 ).addMultiple( "kg", 10**3 ) .addMultiple( "mg", 10**-3 ).addMultiple( "µg", 10**-6 ).addMultiple( "ng", 10**-9 ).addMultiple( "pg", 10**-12 )
 TEMPERATURE = UnitType().addMultiple( "°C", 1 )
 PRESSURE    = UnitType().addMultiple( "atm", 1 )
-LUMINOUSINTENSITY = UnitType().addMultiple( "cd", 1 )
+LUMINOUS    = UnitType().addMultiple( "cd", 1 )
 POWER       = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ) .addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
 #Scales for freedom units
-DISTANCEFREEDOM = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
-AREAFREEDOM = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
-MASSFREEDOM = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
+DISTANCE2 = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
+AREA2 = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
+MASS2 = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
 
 
 units = []
 
 #Area Freedom to SI
-units.append( NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)", DISTANCE, 0.00064516 ) ) #inch squared
-units.append( NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)", DISTANCE, 0.092903 ) )     #foot squared
-units.append( NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)", DISTANCE, 2589990 ) )       #mile squared
-units.append( NormalUnit( "acre", "acres?", AREA, 4046.8564224 ) )                                  #acre
-units.append( NormalUnit( "rood", "roods?", AREA, 1011.7141 ) )                                     #rood
+units.append(NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)",       DISTANCE, 0.00064516 ) )            #inch squared
+units.append(NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)",         DISTANCE, 0.092903 ) )              #foot squared
+units.append(NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)",          DISTANCE, 2589990 ) )               #mile squared
+units.append(NormalUnit( "acre", "acres?",                                      AREA, 4046.8564224 ) )              #acre
+units.append(NormalUnit( "rood", "roods?",                                      AREA, 1011.7141 ) )                 #rood
 #Area SI to Freedom
-units.append( NormalUnit( "acre", "acres?", AREAFREEDOM, 40470000 ) )
+units.append(NormalUnit( "acre", "acres?",                                      AREA2, 40470000 ) )                 #acre
 
 #Volume Freedom to SI
-units.append( NormalUnit( "pint", "pints?|pt", VOLUME, 0.473176 ) )                     #pint
-units.append( NormalUnit( "quart", "quarts?|qt", VOLUME, 0.946353 ) )                   #quart
-units.append( NormalUnit( "gallon", "gal(lons?)?", VOLUME, 3.78541 ) )                  #gallon
-units.append( NormalUnit( "fluid ounce", "fl\.? oz\.?", VOLUME, 0.0295735296 ) )        #fluid ounce
-units.append( NormalUnit( "teaspoon", "tsp|teaspoons?", VOLUME, 0.00492892159 ) )       #US teaspoon
-units.append( NormalUnit( "tablespoon", "tbsp|tablespoons?", VOLUME, 0.0147867648 ) )   #US tablespoon
-units.append( NormalUnit( "barrel", "drum|barrels?", VOLUME, 119.240471 ) )             #barrel
-units.append( NormalUnit( "peck", "pecks?", VOLUME, 8.809768 ) )                        #pecks
-units.append( NormalUnit( "bushel", "bushels?", VOLUME, 35.23907016688 ) )              #bushels
+units.append(NormalUnit( "pint", "pints?|pt",                                   VOLUME, 0.473176 ) )                #pint
+units.append(NormalUnit( "quart", "quarts?|qt",                                 VOLUME, 0.946353 ) )                #quart
+units.append(NormalUnit( "gallon", "gal(lons?)?",                               VOLUME, 3.78541 ) )                 #gallon
+units.append(NormalUnit( "fluid ounce", "fl\.? oz\.?",                          VOLUME, 0.0295735296 ) )            #fluid ounce
+units.append(NormalUnit( "teaspoon", "tsp|teaspoons?",                          VOLUME, 0.00492892159 ) )           #US teaspoon
+units.append(NormalUnit( "tablespoon", "tbsp|tablespoons?",                     VOLUME, 0.0147867648 ) )            #US tablespoon
+units.append(NormalUnit( "barrel", "drum|barrels?",                             VOLUME, 119.240471 ) )              #barrel
+units.append(NormalUnit( "peck", "pecks?",                                      VOLUME, 8.809768 ) )                #peck
+units.append(NormalUnit( "bushel", "bushels?",                                  VOLUME, 35.23907016688 ) )          #bushel
 
 #Energy Freedom to SI
-units.append( NormalUnit( "foot-pound", "ft( |\*)?lbf?|foot( |-)pound", ENERGY, 1.355818 ) )    #foot-pound
-units.append( NormalUnit( "British thermal unit", "btu", ENERGY, 1055.06 ) )                    #British thermal unit
-units.append( NormalUnit( "calories", "cal(ories?)?", ENERGY, 4.184 ) )                         #calories
-units.append( NormalUnit( "kilocalories", "kcal(ories?)?", ENERGY, 4184 ) )                     #kilocalories
-units.append( NormalUnit( "ton of refrigeration", "ton of refrigeration", ENERGY, 3500 ) )      #ton of refrigeration
-units.append( NormalUnit( "ergs", "ergs?", ENERGY, 10**-7 ) )                                   #ergs
+units.append(NormalUnit( "foot-pound", "ft( |\*)?lbf?|foot( |-)pound",          ENERGY, 1.355818 ) )                #foot-pound
+units.append(NormalUnit( "British thermal unit", "btu",                         ENERGY, 1055.06 ) )                 #British thermal unit
+units.append(NormalUnit( "calories", "cal(ories?)?",                            ENERGY, 4.184 ) )                   #calories
+units.append(NormalUnit( "kilocalories", "kcal(ories?)?",                       ENERGY, 4184 ) )                    #kilocalories
+units.append(NormalUnit( "ton of refrigeration", "ton of refrigeration",        ENERGY, 3500 ) )                    #ton of refrigeration
+units.append(NormalUnit( "ergs", "ergs?",                                       ENERGY, 10**-7 ) )                  #ergs
 
 #Force Freedom to SI
-units.append( NormalUnit( "pound-force", "pound( |-)?force|lbf", FORCE, 4.448222 ) )            #pound-force
+units.append(NormalUnit( "pound-force", "pound( |-)?force|lbf",                 FORCE, 4.448222 ) )                 #pound-force
 
 #Torque Freedom to SI
-units.append( NormalUnit( "pound-foot", "Pound(-| )?(f(oo|ee)?t)|lbf( |\*)?ft", TORQUE, 1.355818 ) )      #pound-foot
+units.append(NormalUnit( "pound-foot", "Pound(-| )?(f(oo|ee)?t)|lbf( |\*)?ft",  TORQUE, 1.355818 ) )                #pound-foot
 
 #Velocity Freedom to SI
-units.append( NormalUnit( "miles per hour", "miles? per hour|mph|mi/h", VELOCITY, 0.44704 ) )             #miles per hour
-units.append( NormalUnit( "knot", "knots?|kts?", VELOCITY, 0.51444444444 ) )                              #knots
-units.append( NormalUnit( "feet per second", "f(oo|ee)?t ?(per|/|p) ?s(ec|onds?)?", VELOCITY, 0.3048 ) )  #feet per second
+units.append(NormalUnit( "miles per hour", "miles? per hour|mph|mi/h",          VELOCITY, 0.44704 ) )               #miles per hour
+units.append(NormalUnit( "knot", "knots?|kts?", VELOCITY, 0.51444444444 ) )                                         #knots
+units.append(NormalUnit( "feet per second", "f(oo|ee)?t ?(per|/|p) ?s(ec|onds?)?", VELOCITY, 0.3048 ) )             #feet per second
 
 #Temperature Freedom to SI
-units.append( NormalUnit( "degrees fahrenheit", "((°|º|deg(ree)?s?) ?)?(fahrenheit|freedom|f)", TEMPERATURE, 5/9, -32 ) )  #Degrees freedom
-units.append( NormalUnit( "degrees rankine", "((°|º|deg(ree)?s?) ?)?(ra?(nkine)?)", TEMPERATURE, 5/9, -491.67 ) )          #Degrees rankine
+units.append(NormalUnit( "degrees fahrenheit", "((°|º|deg(ree)?s?) ?)?(fahrenheit|freedom|f)", TEMPERATURE, 5/9, -32 ) )  #Degrees freedom
+units.append(NormalUnit( "degrees rankine", "((°|º|deg(ree)?s?) ?)?(ra?(nkine)?)", TEMPERATURE, 5/9, -491.67 ) )          #Degrees rankine
 
 #Pressure Freedom to SI
-units.append( NormalUnit( "pound per square inch", "pounds?((-| )?force)? per square in(ch)?|lbf\/in\^2|psi", PRESSURE, 0.068046 ) ) #Pounds per square inch
+units.append(NormalUnit( "pound per square inch", "pounds?((-| )?force)? per square in(ch)?|lbf\/in\^2|psi", PRESSURE, 0.068046 ) ) #Pounds per square inch
 
 #Mass Freedom to SI
-units.append( NormalUnit( "ounce", "ounces?|oz", MASS, 28.349523125 ) )                  #ounces
-units.append( NormalUnit( "pound", "pounds?|lbs?", MASS, 453.59237 ) )                   #pounds
-units.append( NormalUnit( "stone", "stones?|(?<!1)st", MASS, 6350.2293318 ) )            #stones
-units.append( NormalUnit( "grain", "grains?", MASS, 0.06479891 ) )                       #grains
-units.append( NormalUnit( "slug", "slugs?", MASS, 14593.9029 ) )                         #slug
-units.append( NormalUnit( "troy ounce", "troy ?ounces?", MASS, 31.1034768 ) )            #troy ounces
-units.append( NormalUnit( "pennyweight", "penny ?weights?", MASS, 1.55517384 ) )         #pennywheight
-units.append( NormalUnit( "troy pound", "troy ?pounds?", MASS, 373.2417216 ) )           #troy pound
-units.append( NormalUnit( "dram", "drams?", MASS, 1.7718451953125 ) )                    #drams
-units.append( NormalUnit( "hundredweight", "hundredweights?|cwt", MASS, 50802 ) )        #hundredweights
+units.append(NormalUnit( "ounce", "ounces?|oz",                                 MASS, 28.349523125 ) )              #ounces
+units.append(NormalUnit( "pound", "pounds?|lbs?",                               MASS, 453.59237 ) )                 #pounds
+units.append(NormalUnit( "stone", "stones?|(?<!1)st",                           MASS, 6350.2293318 ) )              #stones
+units.append(NormalUnit( "grain", "grains?",                                    MASS, 0.06479891 ) )                #grains
+units.append(NormalUnit( "slug", "slugs?",                                      MASS, 14593.9029 ) )                #slug
+units.append(NormalUnit( "troy ounce", "troy ?ounces?",                         MASS, 31.1034768 ) )                #troy ounce
+units.append(NormalUnit( "pennyweight", "penny ?weights?",                      MASS, 1.55517384 ) )                #pennywheight
+units.append(NormalUnit( "troy pound", "troy ?pounds?",                         MASS, 373.2417216 ) )               #troy pound
+units.append(NormalUnit( "dram", "drams?",                                      MASS, 1.7718451953125 ) )           #drams
+units.append(NormalUnit( "hundredweight", "hundredweights?|cwt",                MASS, 50802 ) )                     #hundredweights
 #Mass SI to Freedom
-units.append( NormalUnit( "gram", "grams?|g", MASSFREEDOM, 0.00220462 ) )                      #grams
-units.append( NormalUnit( "kilogram", "kilograms?|kg|kilo|kilos", MASSFREEDOM, 2.20462 ) )     #kilograms
-units.append( NormalUnit( "metric ton", "metric tons?", MASSFREEDOM, 2204.62 ) )               #metric tons
+units.append(NormalUnit( "gram", "grams?|g",                                    MASS2, 0.00220462 ) )               #grams
+units.append(NormalUnit( "kilogram", "kilograms?|kg|kilo|kilos",                MASS2, 2.20462 ) )                  #kilograms
+units.append(NormalUnit( "metric ton", "metric tons?",                          MASS2, 2204.62 ) )                  #metric tons
 
 #Distance Freedom to SI
-units.append( NormalUnit( "inch", "inch(es)?", DISTANCE, 0.0254 ) )                           #inch
-units.append( NormalUnit( "foot", "f(oo|ee)?t", DISTANCE, 0.3048 ) )                          #foot
-units.append( NormalUnit( "mile", "mi(les?)?", DISTANCE, 1609.344 ) )                         #mile
-units.append( NormalUnit( "yard", "yd|yards?", DISTANCE, 0.9144 ) )                           #yard
-units.append( NormalUnit( "nautical mile", "nautical ?(mi(les?)?)?|nmi", DISTANCE, 1852 ) )   #nautical miles
-units.append( NormalUnit( "thou", "thou", DISTANCE, 0.0000254 ) )                             #thou
-units.append( NormalUnit( "fathom", "fathoms?", DISTANCE, 1.8288 ) )                          #fathom
-units.append( NormalUnit( "furlong", "furlongs?", DISTANCE, 201.1680 ) )                      #furlong
-units.append( NormalUnit( "rack unit", "rack ?units?|ru", DISTANCE, 0.04445 ) )               #rack units
-units.append( NormalUnit( "smoot", "smoots?", DISTANCE, 1.7018 ) )                            #Smoot units
+units.append(NormalUnit( "inch", "inch(es)?",                                   DISTANCE, 0.0254 ) )                #inch
+units.append(NormalUnit( "foot", "f(oo|ee)?t",                                  DISTANCE, 0.3048 ) )                #foot
+units.append(NormalUnit( "mile", "mi(les?)?",                                   DISTANCE, 1609.344 ) )              #mile
+units.append(NormalUnit( "yard", "yd|yards?",                                   DISTANCE, 0.9144 ) )                #yard
+units.append(NormalUnit( "nautical mile", "nautical ?(mi(les?)?)?|nmi",         DISTANCE, 1852 ) )                  #nautical mile
+units.append(NormalUnit( "thou", "thou",                                        DISTANCE, 0.0000254 ) )             #thou
+units.append(NormalUnit( "fathom", "fathoms?",                                  DISTANCE, 1.8288 ) )                #fathom
+units.append(NormalUnit( "furlong", "furlongs?",                                DISTANCE, 201.1680 ) )              #furlong
+units.append(NormalUnit( "rack unit", "rack ?units?|ru",                        DISTANCE, 0.04445 ) )               #rack units
+units.append(NormalUnit( "smoot", "smoots?",                                    DISTANCE, 1.7018 ) )                #Smoot units
 #Distance SI to Freedom
-units.append( NormalUnit( "millimeter", "millimeters?|mm", DISTANCEFREEDOM, 0.0393701 ) )      #centimeters
-units.append( NormalUnit( "centimeter", "centimeters?|cm", DISTANCEFREEDOM, 0.393701 ) )       #centimeters
-units.append( NormalUnit( "meter", "meters?", DISTANCEFREEDOM, 39.3701 ) )                     #meters
+units.append(NormalUnit( "millimeter", "millimeters?|mm",                       DISTANCE2, 0.0393701 ) )            #centimeter
+units.append(NormalUnit( "centimeter", "centimeters?|cm",                       DISTANCE2, 0.393701 ) )             #centimeter
+units.append(NormalUnit( "meter", "meters?",                                    DISTANCE2, 39.3701 ) )              #meter
 
 #Luminous intensity  Imperial to SI
-units.append( NormalUnit( "Lumen", "lumens?|lm", LUMINOUSINTENSITY, 1 ) )          #lumens
+units.append(NormalUnit( "Lumen", "lumens?|lm",                                 LUMINOUS, 1 ) )                     #lumen
 
 #Power Freedom to SI
-units.append( NormalUnit( "horsepower", "horse ?power", POWER, 745.699872 ) )         #horsepower
+units.append(NormalUnit( "horsepower", "horse ?power",                          POWER, 745.699872 ) )               #horsepower
