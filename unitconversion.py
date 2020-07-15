@@ -146,9 +146,9 @@ MASS2 = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).ad
 units = []
 
 #Area Freedom to SI
-units.append(NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)",       AREA, 0.00064516 ) )            #inch squared
-units.append(NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)",         AREA, 0.092903 ) )              #foot squared
-units.append(NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)",          AREA, 2589990 ) )               #mile squared
+#units.append(NormalUnit( "inch squared", "in(ch(es)?)? ?(\^2|squared|²)",       AREA, 0.00064516 ) )            #inch squared
+#units.append(NormalUnit( "foot squared", "f(oo|ee)?t ?(\^2|squared|²)",         AREA, 0.092903 ) )              #foot squared
+#units.append(NormalUnit( "mile squared", "mi(les?)? ?(\^2|squared|²)",          AREA, 2589990 ) )               #mile squared
 units.append(NormalUnit( "acre", "acres?",                                      AREA, 4046.8564224 ) )              #acre
 units.append(NormalUnit( "rood", "roods?",                                      AREA, 1011.7141 ) )                 #rood
 #Area SI to Freedom
@@ -181,12 +181,12 @@ units.append(NormalUnit( "pound-foot", "Pound(-| )?(f(oo|ee)?t)|lbf( |\*)?ft",  
 
 #Velocity Freedom to SI
 units.append(NormalUnit( "miles per hour", "miles? per hour|mph|mi/h",          VELOCITY, 0.44704 ) )               #miles per hour
-units.append(NormalUnit( "knot", "knots?|kts?", VELOCITY, 0.51444444444 ) )                                         #knots
+units.append(NormalUnit( "knot", "knots?|kts?",                                 VELOCITY, 0.51444444444 ) )                                         #knots
 units.append(NormalUnit( "feet per second", "f(oo|ee)?t ?(per|/|p) ?s(ec|onds?)?", VELOCITY, 0.3048 ) )             #feet per second
 
 #Temperature Freedom to SI
 units.append(NormalUnit( "degrees fahrenheit", "((°|º|deg(ree)?s?) ?)?(fahrenheit|freedom|f)", TEMPERATURE, 5/9, -32 ) )  #Degrees freedom
-units.append(NormalUnit( "degrees rankine", "((°|º|deg(ree)?s?) ?)?(ra?(nkine)?)", TEMPERATURE, 5/9, -491.67 ) )          #Degrees rankine
+units.append(NormalUnit( "degrees rankine", "((°|º|deg(ree)?s?) ?)?(ra?(nkine)?)",             TEMPERATURE, 5/9, -491.67 ) )          #Degrees rankine
 
 #Pressure Freedom to SI
 units.append(NormalUnit( "pound per square inch", "pounds?((-| )?force)? per square in(ch)?|lbf\/in\^2|psi", PRESSURE, 0.068046 ) ) #Pounds per square inch
