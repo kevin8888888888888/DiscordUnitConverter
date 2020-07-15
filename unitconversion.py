@@ -138,7 +138,7 @@ PRESSURE    = UnitType().addMultiple( "atm", 1 )
 LUMINOUS    = UnitType().addMultiple( "cd", 1 )
 POWER       = UnitType().addMultiple( "W", 1 ).addMultiple( "pW", 10**-12 ) .addMultiple( "nW", 10**-9 ).addMultiple( "µW", 10**-6 ).addMultiple( "mW", 10**-3 ).addMultiple( "kW", 10**3 ).addMultiple( "MW", 10**6 ).addMultiple( "GW", 10**9 ).addMultiple( "TW", 10**12 )
 #Scales for freedom units
-DISTANCE2 = UnitType().addMultiple( "inches", 1 ).addMultiple( "feet", 12 ).addMultiple( "miles", 63360 )
+DISTANCE2 = UnitType().addMultiple( "inches", 1 ).addMultiple( "feetTESTEST", 12 ).addMultiple( "miles", 63360 )
 AREA2 = UnitType().addMultiple( "square inches", 1 ).addMultiple( "square feet", 144 ).addMultiple( "square miles", 4014000000 ).addMultiple( "acres", 6273000 )
 MASS2 = UnitType().addMultiple( "pounds", 1 ).addMultiple( "ounces", 0.0625 ).addMultiple( "US Tons", 2000 )
 
