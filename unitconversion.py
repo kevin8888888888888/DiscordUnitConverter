@@ -166,7 +166,7 @@ units.append(NormalUnit( "peck", "pecks?",                                      
 units.append(NormalUnit( "bushel", "bushels?",                                  VOLUME, 35.23907016688 ) )          #bushel
 
 #Energy Freedom to SI
-units.append(NormalUnit( "foot-pound", "ft( |\*)?lbf?|foot( |-)pound",          ENERGY, 1.355818 ) )                #foot-pound
+#units.append(NormalUnit( "foot-pound", "ft( |\*)?lbf?|foot( |-)pound",          ENERGY, 1.355818 ) )                #foot-pound
 units.append(NormalUnit( "British thermal unit", "btu",                         ENERGY, 1055.06 ) )                 #British thermal unit
 units.append(NormalUnit( "calories", "cal(ories?)?",                            ENERGY, 4.184 ) )                   #calories
 units.append(NormalUnit( "kilocalories", "kcal(ories?)?",                       ENERGY, 4184 ) )                    #kilocalories
@@ -174,10 +174,10 @@ units.append(NormalUnit( "ton of refrigeration", "ton of refrigeration",        
 units.append(NormalUnit( "ergs", "ergs?",                                       ENERGY, 10**-7 ) )                  #ergs
 
 #Force Freedom to SI
-units.append(NormalUnit( "pound-force", "pound( |-)?force|lbf",                 FORCE, 4.448222 ) )                 #pound-force
+#units.append(NormalUnit( "pound-force", "pound( |-)?force|lbf",                 FORCE, 4.448222 ) )                 #pound-force
 
 #Torque Freedom to SI
-units.append(NormalUnit( "pound-foot", "Pound(-| )?(f(oo|ee)?t)|lbf( |\*)?ft",  TORQUE, 1.355818 ) )                #pound-foot
+#units.append(NormalUnit( "pound-foot", "Pound(-| )?(f(oo|ee)?t)|lbf( |\*)?ft",  TORQUE, 1.355818 ) )                #pound-foot
 
 #Velocity Freedom to SI
 units.append(NormalUnit( "miles per hour", "miles? per hour|mph|mi/h",          VELOCITY, 0.44704 ) )               #miles per hour
